@@ -1,0 +1,20 @@
+{
+  "v3 setup": {
+    "scope": "vue",
+    "prefix": "v3",
+    "body": [
+      "<script setup>",
+      "",
+      "</script>",
+      "",
+      "<template>",
+      "  ",
+      "</template>",
+      "",
+      "<style scoped lang=\"scss\">",
+      "",
+      "</style>"
+    ],
+    "description": "use v3 setup template"
+  }
+}

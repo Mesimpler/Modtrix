@@ -1,0 +1,37 @@
+.el-aside,
+.el-main {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.el-form-item,
+.el-form-item__label {
+  line-height: 24px;
+  height: auto;
+}
+
+.el-dialog {
+  padding: 0;
+}
+
+.el-dialog__body {
+  padding: 10px 20px;
+}
+
+.el-dialog__header {
+  padding: 0;
+  > .el-dialog__title {
+    display: none;
+  }
+  > .el-dialog__headerbtn {
+    top: 2px;
+    right: 8px;
+    z-index: 5000;
+  }
+}
+
+.el-dialog__footer {
+  background-color: #f5f5f5;
+  padding: 20px;
+}

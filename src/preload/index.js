@@ -6,6 +6,9 @@ const api = {
   openDirectory: () => ipcRenderer.invoke('dialog:openDirectory'),
   openExeFile: () => ipcRenderer.invoke('dialog:openExeFile'),
   showItemInFolder: (path) => ipcRenderer.send('shell:showItemInFolder', path),
+  openPath: (path) => ipcRenderer.send('shell:openPath', path),
+  starExe: (path) => ipcRenderer.invoke('shell:starExe', path),
+  starBySteam: (path) => ipcRenderer.invoke('shell:starBySteam', path),
   // core
   getModList: (game) => ipcRenderer.invoke('core:getModList', game),
   activeMod: (game, mod) => ipcRenderer.invoke('core:activeMod', game, mod),

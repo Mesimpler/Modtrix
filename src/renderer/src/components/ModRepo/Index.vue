@@ -47,6 +47,11 @@ async function handleClickRefresh() {
   await modStore.loadGameMods(gameStore.currentGame, { force: true })
 }
 
+function handleClickOpenFloder() {
+  const modRoot = gameStore.currentGame.modRepoSetting.repoRoot
+  window.api.openPath(modRoot)
+}
+
 function updateModTags(mod, newTags) {
   modStore.modifyMod(gameStore.currentGame, mod, {
     ...mod,
@@ -68,6 +73,7 @@ function updateModTags(mod, newTags) {
           style="width: 150px"
         />
         <el-icon @click="handleClickRefresh"><Refresh /></el-icon>
+        <el-icon @click="handleClickOpenFloder"><FolderOpened /></el-icon>
         <RepoSetting />
       </div>
     </div>

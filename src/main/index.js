@@ -5,7 +5,8 @@ import icon from '../../resources/icon.png?asset'
 
 import { handleDirectoryOpen, handleExeFileOpen } from './dialog'
 import { getModList, activeMod, deActiveMod } from './core'
-import { showItemInFolder } from './shell'
+import { showItemInFolder, openPath } from './shell'
+import { starExe, starBySteam } from './exec'
 
 function createWindow() {
   // Create the browser window.
@@ -64,6 +65,9 @@ app.whenReady().then(() => {
   ipcMain.handle('dialog:openDirectory', handleDirectoryOpen)
   ipcMain.handle('dialog:openExeFile', handleExeFileOpen)
   ipcMain.on('shell:showItemInFolder', showItemInFolder)
+  ipcMain.on('shell:openPath', openPath)
+  ipcMain.handle('shell:starExe', starExe)
+  ipcMain.handle('shell:starBySteam', starBySteam)
   // core
   ipcMain.handle('core:getModList', getModList)
   ipcMain.handle('core:activeMod', activeMod)

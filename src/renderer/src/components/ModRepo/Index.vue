@@ -1,6 +1,7 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
 import { filesize } from 'filesize'
+import _ from 'lodash'
 
 import RepoSetting from './components/RepoSetting.vue'
 import ModTags from './components/ModTags.vue'
@@ -11,6 +12,36 @@ import { useGameStore } from '@renderer/stores/game'
 
 const modStore = useModStore()
 const gameStore = useGameStore()
+
+const search = ref('')
+const tableData = ref([])
+
+function filterMods() {
+  const filterData = modStore.currentGameMods.filter((m) => {
+    const modNameMatch =
+      !search.value || m.modName.toLowerCase().includes(search.value.toLowerCase())
+    const modTagsMatch =
+      m.modTags && m.modTags.some((tag) => tag.toLowerCase().includes(search.value.toLowerCase()))
+    return modNameMatch || modTagsMatch
+  })
+  tableData.value = filterData
+}
+const debouncedSearch = _.debounce(() => {
+  filterMods()
+}, 500)
+watch(
+  search,
+  () => {
+    debouncedSearch()
+  },
+  { immediate: true }
+)
+watch(
+  () => modStore.currentGameMods,
+  () => {
+    filterMods()
+  }
+)
 
 async function handleClickRefresh() {
   await modStore.loadGameMods(gameStore.currentGame, { force: true })
@@ -29,12 +60,19 @@ function updateModTags(mod, newTags) {
     <div class="modrepo-header">
       <h4 class="modrepo-header-tittle">Mod Repo</h4>
       <div class="modrepo-header-btns">
+        <el-input
+          v-model="search"
+          clearable
+          size="small"
+          placeholder="Type to search"
+          style="width: 150px"
+        />
         <el-icon @click="handleClickRefresh"><Refresh /></el-icon>
         <RepoSetting />
       </div>
     </div>
     <el-table
-      :data="modStore.currentGameMods"
+      :data="tableData"
       :border="true"
       style="width: 100%"
       max-height="635px"
@@ -94,4 +132,17 @@ function updateModTags(mod, newTags) {
     }
   }
 }
+
+// :deep(.el-input__wrapper) {
+//   position: relative;
+//   .el-input__inner {
+//     padding-right: 18px;
+//   }
+//   .el-input__suffix {
+//     position: absolute;
+//     right: 8px;
+//     top: 50%;
+//     transform: translateY(-50%);
+//   }
+// }
 </style>

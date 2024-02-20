@@ -32,3 +32,11 @@ body,
 li {
   list-style: none;
 }
+
+a {
+  &:active,
+  :visited {
+    color: inherit;
+  }
+  color: inherit;
+}

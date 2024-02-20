@@ -38,7 +38,6 @@ async function switchModStatus() {
         return resolve(true)
       } else {
         ResultFilesDialogRef.value.showDialog(result)
-        console.log(result)
         return reject()
       }
     }, 500)

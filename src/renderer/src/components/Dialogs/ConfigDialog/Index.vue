@@ -242,6 +242,11 @@ function handleFormSubmit() {
                 />
                 <el-checkbox v-model="form.ignoreCase" label="Ignore Case" size="small" />
               </div>
+              <div class="outter-link">
+                <a href="https://github.com/motemen/minimatch-cheat-sheet" target="_blank"
+                  >minimatch usage</a
+                ><el-icon><Link /></el-icon>
+              </div>
             </el-form-item>
           </div>
         </el-tab-pane>
@@ -280,5 +285,20 @@ function handleFormSubmit() {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.outter-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: underline;
+  color: var(--el-text-color-secondary);
+  cursor: pointer;
+  &:hover {
+    color: var(--el-color-primary);
+  }
+  .el-icon {
+    margin-top: 4px;
+  }
 }
 </style>

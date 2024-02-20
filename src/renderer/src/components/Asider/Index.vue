@@ -5,6 +5,7 @@ import AddGame from './components/AddGame.vue'
 <template>
   <el-aside id="app-aside" width="78px">
     <h1 class="aside-logo">M</h1>
+
     <ul class="app-aside-inner">
       <div>
         <li class="aside-item">
@@ -12,7 +13,11 @@ import AddGame from './components/AddGame.vue'
         </li>
       </div>
       <div>
-        <li class="aside-item"></li>
+        <li>
+          <a href="#">
+            <img class="aside-github" src="@renderer/assets/github-fill.svg" />
+          </a>
+        </li>
       </div>
     </ul>
   </el-aside>
@@ -56,5 +61,14 @@ import AddGame from './components/AddGame.vue'
   &:hover {
     background-color: rgba(255, 255, 255, 0.15);
   }
+}
+
+.aside-github {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  border-radius: 50%;
 }
 </style>

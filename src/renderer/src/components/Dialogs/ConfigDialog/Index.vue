@@ -48,7 +48,7 @@ const rules = reactive({
 function openDialog() {
   _activeTabName.value = _.cloneDeep(props.activeTabName)
   if (!_.isEmpty(props.formData)) {
-    form.value = props.formData
+    form.value = _.cloneDeep(props.formData)
   }
   dialogVisible.value = true
 }
